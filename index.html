@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>lyxn</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha512-Fo3rlrZj/k7ujTTXlC92Jov0Fj0LIITJtdc8h3wSJC/tVb0R1WVuLV08P3t4VLC/k3vPClzY4t7iFtKBe4HeWw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@300;700&display=swap" rel="stylesheet">
+    <style>
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes slideIn {
+            from { transform: translateY(20px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        @keyframes parallax {
+            0% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+            100% { transform: translateY(0); }
+        }
+
+        body {
+            font-family: 'Raleway', sans-serif;
+            background: linear-gradient(to right, #000000, #434343);
+            color: #FFFFFF;
+            margin: 0;
+            padding: 0;
+            animation: fadeIn 2s ease-in-out;
+            scroll-behavior: smooth;
+        }
+
+        header {
+            background-color: #1E1E1E;
+            padding: 20px;
+            text-align: center;
+            border-bottom: 3px solid #FFD700;
+            position: relative;
+            overflow: hidden;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-around;
+            padding: 10px;
+            background-color: #333;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        nav a {
+            color: #FFD700;
+            text-decoration: none;
+            font-size: 18px;
+            padding: 10px 20px;
+            transition: background-color 0.2s, color 0.2s;
+        }
+
+        nav a:hover {
+            background-color: #FFD700;
+            color: #000;
+        }
+
+        header h1 {
+            background: linear-gradient(90deg, #00FFFF, #FFD700);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-family: 'Brush Script MT', cursive;
+            font-size: 60px;
+            margin: 10px 0;
+            text-shadow: 3px 3px 6px #000000;
+            animation: slideIn 2s ease-out;
+            position: relative;
+            z-index: 1;
+        }
+
+        header h1::after {
+            content: 'lyxn';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            color: transparent;
+            -webkit-text-stroke: 2px #000000;
+        }
+
+        .shape1, .shape2 {
+            position: absolute;
+            fill: #FFD700;
+            opacity: 0.5;
+            z-index: 0;
+            animation: parallax 6s infinite ease-in-out;
+        }
+
+        .shape1 {
+            top: -20px;
+            left: 20px;
+            height: 100px;
+        }
+
+        .shape2 {
+            top: -40px;
+            right: 20px;
+            height: 120px;
+        }
+
+        section {
+            padding: 20px;
+        }
+
+        .section-title {
+            font-family: 'Georgia', serif;
+            color: #FFD700;
+            text-shadow: 1px 1px 2px #000000;
+            margin-bottom: 10px;
+            animation: slideIn 2s ease-out;
+        }
+
+        .content-box {
+            background-color: #1E1E1E;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            transition: transform 0.2s, box-shadow 0.2s;
+            animation: slideIn 2s ease-out;
+            cursor: pointer;
+        }
+
+        .content-box:hover {
+            transform: scale(1.02);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
+        }
+
+        .progress-tracker {
+            border: 2px solid #FFD700;
+        }
+
+        .diet, .routine {
+            border: 2px solid #00FFFF;
+        }
+
+        .progress-tracker ul, .diet ul, .routine ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .progress-tracker li, .diet li, .routine li {
+            background: rgba(0, 0, 0, 0.6);
+            margin: 5px 0;
+            padding: 10px;
+            border-radius: 5px;
+            animation: fadeIn 1.5s ease-in-out;
+        }
+
+        .progress-tracker li:nth-child(odd) {
+            background: rgba(0, 0, 0, 0.8);
+        }
+
+        footer {
+            background-color: #1E1E1E;
+            padding: 10px;
+            text-align: center;
+            border-top: 3px solid #FFD700;
+            box-shadow: 0 -4px 8px rgba(0, 0, 0, 0.2);
+            animation: slideIn 2s ease-out;
+        }
+
+        .social-icons {
+            margin: 20px 0;
+        }
+
+        .social-icons a {
+            color: #FFD700;
+            margin: 0 10px;
+            text-decoration: none;
+            font-size: 24px;
+            transition: color 0.2s;
+        }
+
+        .social-icons a:hover {
+            color: #00FFFF;
+        }
+
+        .icon {
+            margin-right: 10px;
+            color: #FFD700;
+        }
+
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgb(0,0,0);
+            background-color: rgba(0,0,0,0.4);
+            animation: fadeIn 0.5s ease-in-out;
+        }
+
+        .modal-content {
+            background-color: #1E1E1E;
+            margin: 15% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+            max-width: 600px;
+            border-radius: 10px;
+            animation: slideIn 0.5s ease-out;
+        }
+
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: #FFD700;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        /* Account Form */
+        .account-form, .login-form {
+            background-color: #1E1E1E;
+            padding: 20px;
+            border-radius: 10px;
+            margin-top: 20px;
+            border: 2px solid #FFD700;
+            animation: slideIn 2s ease-out;
+        }
+
+        .account-form h2, .login-form h2 {
+            color: #FFD700;
+            margin-bottom: 10px;
+        }
+
+        .account-form label, .login-form label {
+            color: #FFFFFF;
+            margin-bottom: 5px;
+            display: block;
+        }
+
+        .account-form input[type="text"],
+        .account-form input[type="password"],
+        .account-form input[type="email"],
+        .login-form input[type="text"],
+        .login-form input[type="password"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: none;
+            border-radius: 5px;
+            background-color: #333;
+            color: #FFFFFF;
+        }
+
+        .account-form input[type="submit"], .login-form input[type="submit"] {
+            background-color: #FFD700;
+            color: #000;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: background-color 0.2s;
+        }
+
+        .account-form input[type="submit"]:hover, .login-form input[type="submit"]:hover {
+            background-color: #00FFFF;
+        }
+
+        /* User Profile */
+        .user-profile {
+            background-color: #1E1E1E;
+            padding: 20px;
+            border-radius: 10px;
+            margin-top: 20px;
+            border: 2px solid #FFD700;
+            animation: slideIn 2s ease-out;
+        }
+
+        .user-profile h2 {
+            color: #FFD700;
+            margin-bottom: 10px;
+        }
+
+        .user-profile p {
+            color: #FFFFFF;
+            margin: 5px 0;
+        }
+
+        .user-profile .profile-info {
+            background: rgba(0, 0, 0, 0.6);
+            padding: 10px;
+            border-radius: 5px;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <svg class="shape1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+            <circle cx="50" cy="50" r="50"/>
+        </svg>
+        <svg class="shape2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+            <rect width="100" height="100"/>
+        </svg>
+        <h1>Lyxn</h1>
+    </header>
+
+    <nav>
+        <a href="#progress-tracker">Progress Tracker</a>
+        <a href="#perfect-diet">Perfect Diet</a>
+        <a href="#perfect-routine">Perfect Routine</a>
+        <a href="#user-profile">Profile</a>
+        <a href="#create-account">Create Account</a>
+        <a href="#login">Login</a>
+    </nav>
+
+    <section id="progress-tracker">
+        <div class="content-box progress-tracker" onclick="openModal('progressModal')">
+            <h2 class="section-title"><i class="fas fa-chart-line icon"></i>Progress Tracker</h2>
+            <ul>
+                <li>Academic Ability: <span id="academic-progress">85%</span></li>
+                <li>Physical Ability: <span id="physical-progress">90%</span></li>
+                <li>Adaptability: <span id="adaptability-progress">80%</span></li>
+                <li>Social Skills: <span id="social-progress">70%</span></li>
+            </ul>
+        </div>
+    </section>
+
+    <section id="perfect-diet">
+        <div class="content-box diet" onclick="openModal('dietModal')">
+            <h2 class="section-title"><i class="fas fa-apple-alt icon"></i>Perfect Diet</h2>
+            <ul>
+                <li>Meal 1: Protein-rich breakfast</li>
+                <li>Meal 2: Balanced lunch with greens</li>
+                <li>Meal 3: Light dinner with lean protein</li>
+            </ul>
+        </div>
+    </section>
+
+    <section id="perfect-routine">
+        <div class="content-box routine" onclick="openModal('routineModal')">
+            <h2 class="section-title"><i class="fas fa-clock icon"></i>Perfect Routine</h2>
+            <ul>
+                <li>Morning: Exercise and healthy breakfast</li>
+                <li>Afternoon: Focused work and balanced lunch</li>
+                <li>Evening: Relaxation and light dinner</li>
+            </ul>
+        </div>
+    </section>
+
+    <section id="user-profile">
+        <div class="user-profile">
+            <h2>User Profile</h2>
+            <div class="profile-info">
+                <p><strong>Username:</strong> Mohammed</p>
+                <p><strong>Email:</strong> mohammed@example.com</p>
+                <p><strong>Joined:</strong> January 1, 2024</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="create-account">
+        <div class="account-form">
+            <h2>Create Account</h2>
+            <form>
+                <label for="username">Username:</label>
+                <input type="text" id="username" name="username" required>
+
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required>
+
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="password" required>
+
+                <input type="submit" value="Sign Up">
+            </form>
+        </div>
+    </section>
+
+    <section id="login">
+        <div class="login-form">
+            <h2>Login</h2>
+            <form>
+                <label for="login-username">Username:</label>
+                <input type="text" id="login-username" name="login-username" required>
+
+                <label for="login-password">Password:</label>
+                <input type="password" id="login-password" name="login-password" required>
+
+                <input type="submit" value="Login">
+            </form>
+        </div>
+    </section>
+
+    <footer>
+        <div class="social-icons">
+            <a href="https://facebook.com"><i class="fab fa-facebook-f"></i></a>
+            <a href="https://twitter.com"><i class="fab fa-twitter"></i></a>
+            <a href="https://linkedin.com"><i class="fab fa-linkedin-in"></i></a>
+        </div>
+        <p>&copy; 2024 Mohammed - lyxn. All rights reserved.</p>
+    </footer>
+
+
+    <div id="progressModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('progressModal')">&times;</span>
+            <h2>Progress Details</h2>
+            <p>Detailed information about progress tracking...</p>
+        </div>
+    </div>
+
+    <div id="dietModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('dietModal')">&times;</span>
+            <h2>Diet Details</h2>
+            <p>Detailed information about the perfect diet...</p>
+        </div>
+    </div>
+
+    <div id="routineModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('routineModal')">&times;</span>
+            <h2>Routine Details</h2>
+            <p>Detailed information about the perfect routine...</p>
+        </div>
+    </div>
+
+    <script>
+        function openModal(modalId) {
+            document.getElementById(modalId).style.display = "block";
+        }
+
+        function closeModal(modalId) {
+            document.getElementById(modalId).style.display = "none";
+        }
+
+        window.onclick = function(event) {
+            if (event.target.classList.contains('modal')) {
+                event.target.style.display = "none";
+            }
+        }
+    </script>
+</body>
+</html>
